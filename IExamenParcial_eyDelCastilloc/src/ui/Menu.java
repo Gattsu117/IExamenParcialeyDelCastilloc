@@ -31,28 +31,17 @@ Scanner scan = new Scanner(System.in);
     @Override
     public void showOptSlct(int n) {
       
-       ConverterData convD = new ConverterData(1,8,1000,1000);
-       
-       
-       
-       switch(n){
-                    case 1:
-                        
-                       
-                        convD.converter(n);
-                        break;
-                          case 2:
-                       
-                        convD.converter(n);
-                        break;
-                        
-                          case 3:
-                              System.exit(0);
-                        System.out.println("Saliendo...");
-                        break;
-                        
-                        
-                }
+       ConverterData convD = new ConverterData(1,8,1000,1024);
+
+
+        switch (n) {
+            case 1 -> convD.converter(n);
+            case 2 -> convD.converter(n);
+            case 3 -> {
+                System.exit(0);
+                System.out.println("Saliendo...");
+            }
+        }
     }
     
 }

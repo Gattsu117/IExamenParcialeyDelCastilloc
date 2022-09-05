@@ -70,7 +70,7 @@ public class ConverterData {
                 System.out.println("Ingrese la cantidad de Bytes");
                 setSizeBytes(scan.nextFloat());
                 float Bytes = getSizeBytes();
-                float kB = Bytes / sizeKiloBytes;
+                float kB = Bytes / 1000;
                 System.out.println("El tamaño en KB es =" + kB + "   " + sizeKiloBytes);
                 while (!back) {
                     System.out.println(" desea Volver al menú  ?");
