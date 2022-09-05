@@ -4,11 +4,12 @@
  */
 package dol;
 
-import iexamenparcial_eydelcastilloc.ui.Menu;
+import ui.Menu;
+import ui.iMenu;
+
 import java.util.Scanner;
 
 /**
- *
  * @author JADPA-14
  */
 public class ConverterData {
@@ -52,46 +53,73 @@ public class ConverterData {
         this.sizeKiloBytes = sizeKiloBytes;
         this.sizeMegaBytes = sizeMegaBytes;
     }
+
     private int opt;
     private float sizeBytes;
     private float sizeKiloBytes;
     private float sizeMegaBytes;
 
-   
-     public void converter(int num1) {
-         float bytes = 8;
-          Menu menu = new Menu();
-	    	switch(num1){
-                    case 1:
-                        System.out.println("Bytes a KiloBytes\n");
-                       System.out.println("Ingrese la cantidad de Bytes");
-                       setSizeBytes(scan.nextFloat());
-                       
-                        float Bytes = getSizeBytes() * bytes;
-                       float kB = Bytes/1000;
-                        System.out.println("El tamaño en KB es =" + kB);
-                      
+
+    public void converter(int num1) {
+        int opt = num1;
+        float bytes = 8;
+        boolean back = false;
+        Menu menu = new Menu();
+        switch (opt) {
+            case 1 -> {
+                System.out.println("Ingrese la cantidad de Bytes");
+                setSizeBytes(scan.nextFloat());
+                float Bytes = getSizeBytes();
+                float kB = Bytes / sizeKiloBytes;
+                System.out.println("El tamaño en KB es =" + kB + "   " + sizeKiloBytes);
+                while (!back) {
+                    System.out.println(" desea Volver al menú  ?");
+                    System.out.println("1-Seguir calculando");
+                    System.out.println("2-Volver al menu");
+                    num1 = scan.nextInt();
+                    if (num1 == 1) {
+                        converter(num1);
+                        back = true;
+                    } else {
                         menu.show();
                         break;
-                        case 2:
-                        System.out.println("\nKiloBytes a MegaBytes");
-                         System.out.println("Ingrese la cantidad de KiloBytes");
-                         setSizeKiloBytes(scan.nextFloat());
-                        float mb = getSizeKiloBytes() /1024;
-                    
-                         System.out.println("El tamaño en mb es =" + mb);
-                         
-                        menu.show();
-                        break;
-                       
-                         
-                       
-                          default:
-                              System.out.println("Opción no valida volviendo al menu");
-                         menu.show(); 
-                         break;
-                         
-                        
+                    }
+
                 }
-	    }
+            }
+            case 2 -> {
+                System.out.println("Ingrese la cantidad de KiloBytes");
+                setSizeKiloBytes(scan.nextFloat());
+                float mb = getSizeKiloBytes() / sizeMegaBytes;
+                System.out.println("El tamaño en mb es =" + mb);
+                while (!back) {
+                    System.out.println(" desea Volver al menú  ?");
+                    System.out.println("1-Seguir calculando");
+                    System.out.println("2-Volver al menu");
+                    num1 = scan.nextInt();
+                    if (num1 == 1) {
+                        converter(num1);
+                        back = true;
+                    } else {
+                        menu.show();
+                        break;
+                    }
+
+                }
+            }
+            default -> {
+                System.out.println("opcion no valida, desea finalizar ?");
+                System.out.println("1-Si ");
+                System.out.println("otra tecla-No");
+                opt = scan.nextInt();
+                if (opt == 1) {
+                    menu.show();
+                } else {
+                    System.exit(0);
+                }
+            }
+        }
+    }
+
+
 }
